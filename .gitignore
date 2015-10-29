@@ -1,0 +1,8 @@
+#Ignore compiled Java classes
+*.class
+#Ignore temp files created by edit when woking in Linux
+*~
+#Ignore thumbnails
+*.db
+#Ignore the problem sheet
+*.pdf
