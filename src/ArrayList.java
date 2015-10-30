@@ -32,7 +32,7 @@ public class ArrayList implements List {
 	 * @return the number of items currently in the list
 	 */
 	public int size() {
-		int objArraySize = this.objArray.length();
+		int objArraySize = this.objArray.length;
 		int listSize = 0;
 		for(int i=0; i < objArraySize; i++) {
 			if(objArray[i] == null) {
@@ -57,7 +57,7 @@ public class ArrayList implements List {
 	 */
 	public ReturnObject get(int index) {
 		ReturnObject getReturn;
-		if(this.isEmpty) {
+		if(this.isEmpty()) {
 			getReturn = new ReturnObjectImpl(null, ErrorMessage.EMPTY_STRUCTURE);
 		}
 		else if(!this.validIndex(index)) {
@@ -87,7 +87,7 @@ public class ArrayList implements List {
 			this.objArray[index] = null;
 			this.removeNulls();
 		}
-		if(this.size() == ((this.objArray.length() / 2) - 1)) {
+		if(this.size() == ((this.objArray.length / 2) - 1)) {
 			this.shrinkArray();
 		}
 		return remReturn;
@@ -124,7 +124,7 @@ public class ArrayList implements List {
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
 		}
 		// if the array is now full we need to increase storage
-		if(this.size() == this.objArray.length()) {
+		if(this.size() == this.objArray.length) {
 			this.growArray();
 		}
 		return addReturn;
@@ -162,15 +162,36 @@ public class ArrayList implements List {
 	// remove any 'gaps' due to null pointers from the objArray field.
 	private void removeNulls() {
 		//TODO
-		return;
+		int objArraySize = this.objArray.length;
+		//Object[] cleanArray = new Object[objArraySize];
+		for(int i = 0; i < objArraySize; i++) {
+			if((this.objArray[i] == null) && (i != (objArraySize - 1))) {
+				this.objArray[i] = this.objArray[(i + 1)];
+				this.objArray[(i + 1)] = null;
+			}
+		}
+		//return;
 	}
 	// resize the objArray.
 	private void growArray() {
 		//TODO
-		return;
+		int objArraySize = this.objArray.length;
+		Object[] resizedArray = new Object[(objArraySize * 2)];
+		for(int i = 0; i < objArraySize; i++) {
+			resizedArray[i] = this.objArray[i];
+		}
+		this.objArray = resizedArray;
+		//return;
 	}
 	private void shrinkArray() {
 		//TODO
-		return;
+		int objArraySize = this.objArray.length;
+		int newObjArraySize = objArraySize / 2;
+		Object[] resizedArray = new Object[newObjArraySize];
+		for(int i = 0; i < newObjArraySize; i++) {
+			resizedArray[i] = this.objArray[i];
+		}
+		this.objArray = resizedArray;
+		//return;
 	}
 }
