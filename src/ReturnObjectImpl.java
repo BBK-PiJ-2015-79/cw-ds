@@ -8,7 +8,7 @@
  * @author PiJ
  * @author Chris Grocott
  */
-public class ReturnObjectImpl implements ReturnObj {
+public class ReturnObjectImpl implements ReturnObject {
 	ErrorMessage error;
 	Object wrappedObj;
 	
@@ -17,13 +17,15 @@ public class ReturnObjectImpl implements ReturnObj {
 	 * null then the error is set to  INVALID_ARGUMENT
 	 * @param wrappedObj the object to be wrapped by the new ReturnObjectImpl object
 	 */
-	public ReturnObjectImpl(Object wrappedObj) {
-		this.wrappedObj = wrappedObj;
+	//responsibility for deciding on the error status usually sits with the calling code...
+	public ReturnObjectImpl(Object wrappedObj, ErrorMessage error) {
 		if(wrappedObj == null) {
-			this.error = INVALID_ARGUMENT;
+			this.wrappedObj = null;
+			this.error = ErrorMessage.INVALID_ARGUMENT;
 		}
 		else {
-			this.error = NO_ERROR;
+			this.wrappedObj = wrappedObj;
+			this.error = error;
 		}
 	}
 	/**
@@ -32,7 +34,7 @@ public class ReturnObjectImpl implements ReturnObj {
 	 */
 	// Implemented by CG
 	public boolean hasError() {
-		if(this.error == NO_ERROR) {
+		if(this.error == ErrorMessage.NO_ERROR) {
 			return true;
 		}
 		else {
