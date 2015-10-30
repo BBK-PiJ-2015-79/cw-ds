@@ -19,14 +19,8 @@ public class ReturnObjectImpl implements ReturnObject {
 	 */
 	//responsibility for deciding on the error status usually sits with the calling code...
 	public ReturnObjectImpl(Object wrappedObj, ErrorMessage error) {
-		if(wrappedObj == null) {
-			this.wrappedObj = null;
-			this.error = ErrorMessage.INVALID_ARGUMENT;
-		}
-		else {
-			this.wrappedObj = wrappedObj;
-			this.error = error;
-		}
+		this.wrappedObj = wrappedObj;
+		this.error = error;
 	}
 	/**
 	 * Returns whether there has been an error
