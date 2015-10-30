@@ -6,6 +6,7 @@
  */
 public class ArrayList implements List {
 	private Object[] objArray;
+	private static final int MIN_ARRAY_SIZE = 5;
 	
 	public ArrayList() {
 		this.objArray = new Object[5];
@@ -35,7 +36,7 @@ public class ArrayList implements List {
 		int listSize = 0;
 		for(int i=0; i < objArraySize; i++) {
 			if(objArray[i] == null) {
-				break;
+				break; // safe assuming no 'gaps'
 			}
 			else {
 				listSize++;
@@ -56,11 +57,14 @@ public class ArrayList implements List {
 	 */
 	public ReturnObject get(int index) {
 		ReturnObject getReturn;
-		if((index < 0) || (index >= this.size())) {
-			getReturn = new ReturnObject(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		if(this.isEmpty) {
+			getReturn = new ReturnObjectImpl(null, ErrorMessage.EMPTY_STRUCTURE);
+		}
+		else if(!this.validIndex(index)) {
+			getReturn = new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}
 		else {
-			getReturn = new ReturnObject(this.objArray[index], ErrorMessage.NO_ERROR);
+			getReturn = new ReturnObjectImpl(this.objArray[index], ErrorMessage.NO_ERROR);
 		}
 		return getReturn;
 	}
@@ -77,7 +81,17 @@ public class ArrayList implements List {
 	 * @return the element or an appropriate error message, 
 	 *         encapsulated in a ReturnObject
 	 */
-	public ReturnObject remove(int index);
+	public ReturnObject remove(int index) {
+		ReturnObject remReturn = this.get(index);
+		if(!remReturn.hasError()) {
+			this.objArray[index] = null;
+			this.removeNulls();
+		}
+		if(this.size() == ((this.objArray.length() / 2) - 1)) {
+			this.shrinkArray();
+		}
+		return remReturn;
+	}
 
 	/**
 	 * Adds an element to the list, inserting it at the given
@@ -97,7 +111,24 @@ public class ArrayList implements List {
 	 * @return an ReturnObject, empty if the operation is successful
 	 *         the item added or containing an appropriate error message
 	 */
-	public ReturnObject add(int index, Object item);
+	public ReturnObject add(int index, Object item) {
+		ReturnObject addReturn;
+		if(item == null) {
+			addReturn = new ReturnObjectImpl(null, ErrorMessage.INVALID_ARGUMENT);
+		}
+		else if(!this.validIndex(index)) {
+			addReturn = new ReturnObjectImpl(item, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}
+		else {
+			// SB asked for clarification on the forums, returning null wrapped object for now CG 30/10/15
+			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
+		}
+		// if the array is now full we need to increase storage
+		if(this.size() == this.objArray.length()) {
+			this.growArray();
+		}
+		return addReturn;
+	}
 
 	/**
 	 * Adds an element at the end of the list.
@@ -110,5 +141,36 @@ public class ArrayList implements List {
 	 * @return an ReturnObject, empty if the operation is successful
 	 *         the item added or containing an appropriate error message
 	 */
-	public ReturnObject add(Object item);
+	public ReturnObject add(Object item) {
+		ReturnObject addReturn = this.add(this.size(), item);
+		return addReturn;
+	}
+	
+	/*
+	 * Helper methods
+	 */
+	//detect whether an index is out of bounds
+	private boolean	validIndex(int index) {
+		if((index < 0) || (index >= this.size())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// remove any 'gaps' due to null pointers from the objArray field.
+	private void removeNulls() {
+		//TODO
+		return;
+	}
+	// resize the objArray.
+	private void growArray() {
+		//TODO
+		return;
+	}
+	private void shrinkArray() {
+		//TODO
+		return;
+	}
 }
