@@ -60,7 +60,7 @@ public class ArrayList implements List {
 		if(this.isEmpty()) {
 			getReturn = new ReturnObjectImpl(null, ErrorMessage.EMPTY_STRUCTURE);
 		}
-		else if(!this.validIndex(index)) {
+		else if(!this.validIndex(index, "get")) {
 			getReturn = new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}
 		else {
@@ -116,15 +116,18 @@ public class ArrayList implements List {
 		if(item == null) {
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.INVALID_ARGUMENT);
 		}
-		else if(!this.validIndex(index)) {
+		else if(!this.validIndex(index, "add")) {
 			addReturn = new ReturnObjectImpl(item, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}
 		else {
 			// SB asked for clarification on the forums, returning null wrapped object for now CG 30/10/15
+			this.makeSpace(index);
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
+			this.objArray[index] = item;
 		}
 		// if the array is now full we need to increase storage
 		if(this.size() == this.objArray.length) {
+			System.out.println("Need to grow array!"); //debug
 			this.growArray();
 		}
 		return addReturn;
@@ -149,13 +152,17 @@ public class ArrayList implements List {
 	/*
 	 * Helper methods
 	 */
-	//detect whether an index is out of bounds
-	private boolean	validIndex(int index) {
-		if((index < 0) || (index >= this.size())) {
-			return true;
+	//detect whether an index is out of bounds - however, this differs depending on whether you're looking up an index or adding!
+	private boolean	validIndex(int index, String oper) {
+		int maxIndex = this.size();
+		if(oper.equals("add")) {
+			maxIndex++;
+		}
+		if((index < 0) || (index >= maxIndex)) {
+			return false;
 		}
 		else {
-			return false;
+			return true;
 		}
 	}
 	
@@ -193,5 +200,45 @@ public class ArrayList implements List {
 		}
 		this.objArray = resizedArray;
 		//return;
+	}
+
+	/**
+	 * toString method, return the current data structure as a string;
+	 */
+	public String toString() {
+		String returnString = "";
+		int currentSize = (this.size());
+		ReturnObject currentReturnObj;
+		Object currentObj;
+		for(int i = 0; i < currentSize; i++) {
+			currentReturnObj = this.get(i);
+			if(!currentReturnObj.hasError()) {
+				returnString = returnString + currentReturnObj.getReturnValue().toString() + ", ";
+				//returnString = returnString + "Found something at index " + Integer.toString(i) + ", ";
+				//currentObj = currentReturnObj.getReturnValue();
+				//System.out.println(currentObj.toString());
+				//System.out.println(this.objArray[i].toString());
+			}
+			else {
+				returnString = returnString + "Error at index " + Integer.toString(i) + ", ";
+				//System.out.println(currentReturnObj.getError());
+			}
+		}
+		if(returnString.length() > 0) {
+			returnString = returnString.substring(0, (returnString.length() - 2));
+		}
+		return returnString;
+	}
+
+	// make a whole for adding a new item.
+	public void makeSpace(int index) {
+		int currentIndex = this.size();
+		while(currentIndex > index) {
+			//make a hole
+			this.objArray[currentIndex] = this.objArray[(currentIndex - 1)];
+			this.objArray[(currentIndex - 1)] = null;
+			currentIndex--;
+		}
+		System.out.println("After making space, list looks like this: " + this.toString());
 	}
 }
