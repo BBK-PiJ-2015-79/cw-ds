@@ -87,7 +87,7 @@ public class ArrayList implements List {
 			this.objArray[index] = null;
 			this.removeNulls();
 		}
-		if(this.size() == ((this.objArray.length / 2) - 1)) {
+		if((this.size() == ((this.objArray.length / 2) - 1)) && (this.objArray.length > this.MIN_ARRAY_SIZE)) {
 			this.shrinkArray();
 		}
 		return remReturn;
@@ -183,6 +183,7 @@ public class ArrayList implements List {
 	private void growArray() {
 		//TODO
 		int objArraySize = this.objArray.length;
+		System.out.println("Upsizing to " + Integer.toString(objArraySize * 2)); //debug
 		Object[] resizedArray = new Object[(objArraySize * 2)];
 		for(int i = 0; i < objArraySize; i++) {
 			resizedArray[i] = this.objArray[i];
@@ -194,6 +195,7 @@ public class ArrayList implements List {
 		//TODO
 		int objArraySize = this.objArray.length;
 		int newObjArraySize = objArraySize / 2;
+		System.out.println("Downsizing to " + Integer.toString(newObjArraySize)); //debug
 		Object[] resizedArray = new Object[newObjArraySize];
 		for(int i = 0; i < newObjArraySize; i++) {
 			resizedArray[i] = this.objArray[i];
@@ -239,6 +241,5 @@ public class ArrayList implements List {
 			this.objArray[(currentIndex - 1)] = null;
 			currentIndex--;
 		}
-		System.out.println("After making space, list looks like this: " + this.toString());
 	}
 }
