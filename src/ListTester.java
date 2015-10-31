@@ -25,9 +25,39 @@ public class ListTester {
 		testObj = testAL.add(2, "NEW TWO!");
 
 		System.out.println(testAL.toString());
-		/*
-		ReturnObject ro1 = new ReturnObjectImpl("Hi there", ErrorMessage.NO_ERROR);
-		System.out.println(Boolean.toString(ro1.hasError()));
-		*/
+
+		testObj = testAL.remove(3);
+
+		System.out.println("Removed " + testObj.toString());
+
+		System.out.println(testAL.toString());
+		
+		testObj = testAL.remove(1);
+		System.out.println(testObj.getError());
+		System.out.println("Size: " + Integer.toString(testAL.size()));
+		testObj = testAL.remove(1);
+		System.out.println(testObj.getError());
+		System.out.println("Size: " + Integer.toString(testAL.size()));
+		testObj = testAL.remove(1);
+		System.out.println(testObj.getError());
+		System.out.println("Size: " + Integer.toString(testAL.size()));
+		testObj = testAL.remove(1);
+		System.out.println(testObj.getError());
+		System.out.println("Size: " + Integer.toString(testAL.size()));
+		testObj = testAL.remove(1);
+		System.out.println(testObj.getError());
+		System.out.println("Size: " + Integer.toString(testAL.size()));
+
+		System.out.println(testAL.toString());
+
+		testObj = testAL.remove(0);
+		System.out.println(testObj.getError());
+		System.out.println("Size: " + Integer.toString(testAL.size()));
+
+		testObj = testAL.remove(0);
+		System.out.println(testObj.getError());
+		System.out.println("Size: " + Integer.toString(testAL.size()));
+
+		System.out.println(testAL.toString());
 	}
 }
