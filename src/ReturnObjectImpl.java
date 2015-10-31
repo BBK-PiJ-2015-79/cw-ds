@@ -28,7 +28,7 @@ public class ReturnObjectImpl implements ReturnObject {
 	 */
 	// Implemented by CG
 	public boolean hasError() {
-		if(this.error == ErrorMessage.NO_ERROR) {
+		if(this.error != ErrorMessage.NO_ERROR) {
 			return true;
 		}
 		else {
