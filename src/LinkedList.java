@@ -43,7 +43,24 @@ public class LinkedList implements List {
 	 *         encapsulated in a ReturnObject
 	 */
 	public ReturnObject get(int index) {
-		
+		ReturnObject getReturn;
+		LinkedListItem currentItem = null;
+		int currentIndex = 1;
+		if(this.isEmpty()) {
+			getReturn = new ReturnObjectImpl(null, ErrorMessage.EMPTY_STRUCTURE);
+		}
+		else if(!this.validIndex(index, "get")) {
+			getReturn = new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}
+		else {
+			currentItem = this.head;
+			while(currentIndex < index) {
+				currentItem = currentItem.getNext();
+				currentIndex++;
+			}
+			getReturn = new ReturnObjectImpl(currentItem.getListItem(), ErrorMessage.NO_ERROR);
+		}
+		return getReturn;
 	}
 
 	/**
@@ -58,7 +75,30 @@ public class LinkedList implements List {
 	 * @return the element or an appropriate error message, 
 	 *         encapsulated in a ReturnObject
 	 */
-	public ReturnObject remove(int index);
+	public ReturnObject remove(int index) {
+		ReturnObject remReturn = this.get(index);
+		if(!remReturn.hasError()) {
+			//remove the returned object
+			//int currentIndex
+			if((index == 1) && (this.size() == 1)) {
+				this.head = null;
+			}
+			else if(index == 1) {
+				this.head = this.head.getNext();
+			}
+			else {
+				//work through and re-assign pointers
+				int currentIndex = 1;
+				LinkedListItem currentItem = this.head;
+				while(currentIndex < (index - 1)) {
+					currentItem = currentItem.getNext();
+					currentIndex++;
+				}
+				currentItem.setNext(currentItem.getNext());
+			}
+		}
+		return remReturn;
+	}
 
 	/**
 	 * Adds an element to the list, inserting it at the given
@@ -78,7 +118,30 @@ public class LinkedList implements List {
 	 * @return an ReturnObject, empty if the operation is successful
 	 *         the item added or containing an appropriate error message
 	 */
-	public ReturnObject add(int index, Object item);
+	public ReturnObject add(int index, Object item) {
+		ReturnObject addReturn;
+		if(item == null) {
+			addReturn = new ReturnObjectImpl(null, ErrorMessage.INVALID_ARGUMENT);
+		}
+		else if(!this.validIndex(index, "add")) {
+			addReturn = new ReturnObjectImpl(item, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}
+		else {
+			LinkedListItem newItem = new LinkedListItem(item);
+			LinkedListItem currentItem = this.head;
+			int currentIndex = 1;
+			while(currentIndex < (index - 1)) {
+				currentItem = currentItem.getNext();
+				currentIndex++;
+			}
+			if(currentItem.hasNext()) {
+				newItem.setNext(currentItem.getNext());
+			}
+			currentItem.setNext(newItem);
+			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
+		}
+		return addReturn;
+	}
 
 	/**
 	 * Adds an element at the end of the list.
@@ -91,8 +154,25 @@ public class LinkedList implements List {
 	 * @return an ReturnObject, empty if the operation is successful
 	 *         the item added or containing an appropriate error message
 	 */
-	public ReturnObject add(Object item);
+	public ReturnObject add(Object item) {
+		return this.add(this.size(), item);
+	}
 
-
+	/*
+	 * Helper methods
+	 */
+	//detect whether an index is out of bounds - however, this differs depending on whether you're looking up an index or adding!
+	private boolean	validIndex(int index, String oper) {
+		int maxIndex = this.size();
+		if(oper.equals("add")) {
+			maxIndex++;
+		}
+		if((index < 0) || (index >= maxIndex)) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 
 }

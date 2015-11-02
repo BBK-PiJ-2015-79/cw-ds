@@ -18,6 +18,15 @@ public class LinkedListItem {
 		return this.next;
 	}
 
+	public boolean hasNext() {
+		if(this.next == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
 	public Object getListItem() {
 		return this.listObject;
 	}
