@@ -66,6 +66,11 @@ public class ReturnObjectImpl implements ReturnObject {
 	}
 	
 	public String toString() {
-		return this.wrappedObj.toString();
+		if(this.wrappedObj == null) {
+			return "NULL";
+		}
+		else {
+			return this.wrappedObj.toString();
+		}
 	}
 }

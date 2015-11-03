@@ -80,7 +80,7 @@ public class LinkedList implements List {
 		if(!remReturn.hasError()) {
 			//remove the returned object
 			//int currentIndex
-			if((index == 1) && (this.size() == 1)) {
+			if((index == 0) && (this.size() == 1)) {
 				this.head = null;
 			}
 			else if(index == 1) {

@@ -34,29 +34,47 @@ public class LinkedListTester {
 		
 		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
+		System.out.println("Removed " + testObj.toString());
 		System.out.println("Size: " + Integer.toString(testLL.size()));
+		System.out.println("=======");
+
 		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
+		System.out.println("Removed " + testObj.toString());
 		System.out.println("Size: " + Integer.toString(testLL.size()));
+		System.out.println("=======");
+
 		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
+		System.out.println("Removed " + testObj.toString());
 		System.out.println("Size: " + Integer.toString(testLL.size()));
+		System.out.println("=======");
+
 		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
+		System.out.println("Removed " + testObj.toString());
 		System.out.println("Size: " + Integer.toString(testLL.size()));
+		System.out.println("=======");
+
 		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
+		System.out.println("Removed " + testObj.toString());
 		System.out.println("Size: " + Integer.toString(testLL.size()));
+		System.out.println("=======");
 
 		System.out.println(testLL.toString());
 
 		testObj = testLL.remove(0);
 		System.out.println(testObj.getError());
+		System.out.println("Removed " + testObj.toString());
 		System.out.println("Size: " + Integer.toString(testLL.size()));
+		System.out.println("=======");
 
 		testObj = testLL.remove(0);
 		System.out.println(testObj.getError());
+		System.out.println("Removed " + testObj.toString());
 		System.out.println("Size: " + Integer.toString(testLL.size()));
+		System.out.println("=======");
 
 		System.out.println(testLL.toString());
 	}
