@@ -7,57 +7,57 @@ public class LinkedListTester {
 	public void launch() {
 		
 		System.out.println("Welcome, let's create a new LinkedList");
-		LinkedList testAL = new LinkedList();
-		//System.out.println(Integer.toString(testAL.size()));
-		//System.out.println(testAL.toString());
-		ReturnObject testObj = testAL.add(0, new Integer(7));
+		LinkedList testLL = new LinkedList(); //size 0
+		//System.out.println(Integer.toString(testLL.size()));
+		//System.out.println(testLL.toString());
+		ReturnObject testObj = testLL.add(0, new Integer(7)); //size 1
 		//System.out.println(testObj.getError());
-		testObj = testAL.add(1, "A lovely mug");
+		testObj = testLL.add(1, "A lovely mug");
 		//System.out.println(testObj.getError());
-		//System.out.println(Integer.toString(testAL.size()));
-		System.out.println(testAL.toString());
-		testObj = testAL.add("Four candles");
-		testObj = testAL.add(new Boolean(true));
-		testObj = testAL.add("BING BING");
+		//System.out.println(Integer.toString(testLL.size()));
+		System.out.println(testLL.toString());
+		testObj = testLL.add("Four candles");
+		testObj = testLL.add(new Boolean(true));
+		testObj = testLL.add("BING BING");
 
-		System.out.println(testAL.toString());
+		System.out.println(testLL.toString());
 
-		testObj = testAL.add(2, "NEW TWO!");
+		testObj = testLL.add(2, "NEW TWO!");
 
-		System.out.println(testAL.toString());
+		System.out.println(testLL.toString());
 
-		testObj = testAL.remove(3);
+		testObj = testLL.remove(3);
 
 		System.out.println("Removed " + testObj.toString());
 
-		System.out.println(testAL.toString());
+		System.out.println(testLL.toString());
 		
-		testObj = testAL.remove(1);
+		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
-		System.out.println("Size: " + Integer.toString(testAL.size()));
-		testObj = testAL.remove(1);
+		System.out.println("Size: " + Integer.toString(testLL.size()));
+		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
-		System.out.println("Size: " + Integer.toString(testAL.size()));
-		testObj = testAL.remove(1);
+		System.out.println("Size: " + Integer.toString(testLL.size()));
+		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
-		System.out.println("Size: " + Integer.toString(testAL.size()));
-		testObj = testAL.remove(1);
+		System.out.println("Size: " + Integer.toString(testLL.size()));
+		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
-		System.out.println("Size: " + Integer.toString(testAL.size()));
-		testObj = testAL.remove(1);
+		System.out.println("Size: " + Integer.toString(testLL.size()));
+		testObj = testLL.remove(1);
 		System.out.println(testObj.getError());
-		System.out.println("Size: " + Integer.toString(testAL.size()));
+		System.out.println("Size: " + Integer.toString(testLL.size()));
 
-		System.out.println(testAL.toString());
+		System.out.println(testLL.toString());
 
-		testObj = testAL.remove(0);
+		testObj = testLL.remove(0);
 		System.out.println(testObj.getError());
-		System.out.println("Size: " + Integer.toString(testAL.size()));
+		System.out.println("Size: " + Integer.toString(testLL.size()));
 
-		testObj = testAL.remove(0);
+		testObj = testLL.remove(0);
 		System.out.println(testObj.getError());
-		System.out.println("Size: " + Integer.toString(testAL.size()));
+		System.out.println("Size: " + Integer.toString(testLL.size()));
 
-		System.out.println(testAL.toString());
+		System.out.println(testLL.toString());
 	}
 }

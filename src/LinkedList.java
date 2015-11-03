@@ -126,6 +126,10 @@ public class LinkedList implements List {
 		else if(!this.validIndex(index, "add")) {
 			addReturn = new ReturnObjectImpl(item, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}
+		else if(this.head == null) {
+			this.head = new LinkedListItem(item);
+			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
+		}
 		else {
 			LinkedListItem newItem = new LinkedListItem(item);
 			LinkedListItem currentItem = this.head;
@@ -173,6 +177,21 @@ public class LinkedList implements List {
 		else {
 			return true;
 		}
+	}
+	
+	public String toString() {
+		String returnString = "";
+		LinkedListItem currentItem = head;
+		if(this.size() > 0) {
+			do {
+				returnString = returnString + currentItem.toString() + ", ";
+				currentItem = currentItem.getNext();
+			} while(currentItem != null);
+		}
+		if(returnString.length() > 0) {
+			returnString = returnString.substring(0, (returnString.length() - 2));
+		}
+		return returnString;
 	}
 
 }

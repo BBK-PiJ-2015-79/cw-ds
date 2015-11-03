@@ -45,7 +45,11 @@ public class LinkedListItem {
 			return 1;
 		}
 		else {
-			return 1 + this.size();
+			return 1 + this.next.size();
 		}
+	}
+	
+	public String toString() {
+		return this.listObject.toString();
 	}
 }

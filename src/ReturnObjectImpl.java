@@ -64,4 +64,8 @@ public class ReturnObjectImpl implements ReturnObject {
 	public Object getReturnValue() {
 		return this.wrappedObj;
 	}
+	
+	public String toString() {
+		return this.wrappedObj.toString();
+	}
 }
