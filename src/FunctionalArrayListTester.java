@@ -30,6 +30,10 @@ public class FunctionalArrayListTester {
 
 		System.out.println("Removed " + testObj.toString());
 
+		System.out.println("===========");
+		System.out.println(testFAL.rest().toString());
+		System.out.println("===========");
+
 		System.out.println(testFAL.toString());
 		
 		testObj = testFAL.remove(1);

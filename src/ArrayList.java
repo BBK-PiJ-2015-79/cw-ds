@@ -127,7 +127,7 @@ public class ArrayList implements List {
 		}
 		// if the array is now full we need to increase storage
 		if(this.size() == this.objArray.length) {
-			System.out.println("Need to grow array!"); //debug
+			//System.out.println("Need to grow array!"); //debug
 			this.growArray();
 		}
 		return addReturn;
@@ -183,7 +183,7 @@ public class ArrayList implements List {
 	private void growArray() {
 		//TODO
 		int objArraySize = this.objArray.length;
-		System.out.println("Upsizing to " + Integer.toString(objArraySize * 2)); //debug
+		//System.out.println("Upsizing to " + Integer.toString(objArraySize * 2)); //debug
 		Object[] resizedArray = new Object[(objArraySize * 2)];
 		for(int i = 0; i < objArraySize; i++) {
 			resizedArray[i] = this.objArray[i];
@@ -195,7 +195,7 @@ public class ArrayList implements List {
 		//TODO
 		int objArraySize = this.objArray.length;
 		int newObjArraySize = objArraySize / 2;
-		System.out.println("Downsizing to " + Integer.toString(newObjArraySize)); //debug
+		//System.out.println("Downsizing to " + Integer.toString(newObjArraySize)); //debug
 		Object[] resizedArray = new Object[newObjArraySize];
 		for(int i = 0; i < newObjArraySize; i++) {
 			resizedArray[i] = this.objArray[i];
