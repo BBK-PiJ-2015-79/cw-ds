@@ -87,10 +87,15 @@ public class ImprovedStackImpl implements ImprovedStack {
 		FunctionalList newStackList = new FunctionalArrayList();
 		int stackSize = this.size();
 		for(int i = 0; i < stackSize; i++) {
-			if(!this.stackList.get(i).equals(object)) {
-				newStackList.add(this.);
+			if(!this.stackList.get(i).getReturnValue().equals(object)) {
+				//System.out.println(object.toString() + " does not equal " + this.stackList.get(i).getReturnValue().toString()); // debug
+				newStackList.add(this.stackList.get(i));
+			}
+			else {
+				//System.out.println(object.toString() + " equals " + this.stackList.get(i).getReturnValue().toString()); // debug
 			}
 		}
+		this.stackList = newStackList;
 		return;
 	}
 

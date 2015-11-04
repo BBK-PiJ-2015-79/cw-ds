@@ -16,5 +16,10 @@ public class ImprovedStackTester {
 		testIStack.push(new Integer(8));
 		System.out.println(testIStack.toString());
 		System.out.println(testIStack.reverse().toString());
+
+		System.out.println("Try removing Charlie");
+		testIStack.remove("Charlie");
+
+		System.out.println(testIStack.toString());
 	}
 }
