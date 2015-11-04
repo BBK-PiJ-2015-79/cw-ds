@@ -27,7 +27,7 @@ public class StackImpl extends AbstractStack {
 	 * @param item the new item to be added
 	 */
 	public void push(Object item) {
-		this.internalList.add(item);
+		this.internalList.add(0, item);
 	}
 
 	/**
