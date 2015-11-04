@@ -13,20 +13,23 @@ public class ReturnObjectImpl implements ReturnObject {
 	Object wrappedObj;
 	
 	/**
-	 * One argument constructor for ReturnObjectImpl. If the object supplied is
-	 * null then the error is set to  INVALID_ARGUMENT
+	 * Two argument constructor for ReturnObjectImpl. Setters have not been included
+	 * so the only way to set the instance variables is to pass in parameters when the
+	 * ReturnObjectImpl is instantiated. This is handled within the code returning a
+	 * ReturnObject.
+	 *
 	 * @param wrappedObj the object to be wrapped by the new ReturnObjectImpl object
+	 * @param error the Error Message associated with the ReturnObjectImpl object
 	 */
-	//responsibility for deciding on the error status usually sits with the calling code...
 	public ReturnObjectImpl(Object wrappedObj, ErrorMessage error) {
 		this.wrappedObj = wrappedObj;
 		this.error = error;
 	}
+
 	/**
 	 * Returns whether there has been an error
 	 * @return whether there has been an error
 	 */
-	// Implemented by CG
 	public boolean hasError() {
 		if(this.error != ErrorMessage.NO_ERROR) {
 			return true;
@@ -65,6 +68,13 @@ public class ReturnObjectImpl implements ReturnObject {
 		return this.wrappedObj;
 	}
 	
+	/**
+	 * Returns a String describing the wrapped object. The String
+	 * returned is the same as if the toString() method were called
+	 * on the wrapped object directly.
+	 *
+	 * @return a String describing the wrapped object
+	 */
 	public String toString() {
 		if(this.wrappedObj == null) {
 			return "NULL";

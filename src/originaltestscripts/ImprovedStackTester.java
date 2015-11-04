@@ -7,6 +7,9 @@ public class ImprovedStackTester {
 	public void launch() {
 		System.out.println("Welcome, let's create a new Improved Stack");
 		ImprovedStack testIStack = new ImprovedStackImpl();
+
+		testIStack.remove(new Integer(8));
+
 		testIStack.push("Alice");
 		testIStack.push("Bob");
 		testIStack.push("Charlie");
@@ -19,6 +22,7 @@ public class ImprovedStackTester {
 
 		System.out.println("Try removing Charlie");
 		testIStack.remove("Charlie");
+		testIStack.remove(new Integer(4));
 
 		System.out.println(testIStack.toString());
 	}
