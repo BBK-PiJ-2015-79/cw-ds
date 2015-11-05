@@ -17,10 +17,12 @@ public class List_UTest {
 	@Test
 	public void testAddingRemoving() {
 		assertEquals(aList.size(), 0);
+		assertTrue(aList.get(0).hasError());
 		aList.remove(0);
 		assertEquals(aList.size(), 0);
 		aList.add(new Integer(0));
 		assertEquals(aList.size(), 1);
+		assertFalse(aList.get(0).hasError());
 		aList.add(new Integer(0));
 		assertEquals(aList.size(), 2);
 		aList.add(new Integer(0));
