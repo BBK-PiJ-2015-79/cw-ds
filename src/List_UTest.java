@@ -74,36 +74,86 @@ public class List_UTest {
 	}
 	@Test
 	public void testBothListsTheSameAfterAddingAndRemoving() {
-		assertEquals(aList.toString(), lList.toString());
+		//assertEquals(aList.toString(), lList.toString());
+		testListStringsMatch();
+		ReturnObject rObjA;
+		ReturnObject rObjL;
 
-		aList.add(new Integer(4));
-		lList.add(new Integer(4));
+		rObjA = aList.add(new Integer(4));
+		rObjL = lList.add(new Integer(4));
 
-		assertEquals(aList.toString(), lList.toString());
+		testReturnObjectsMatch(rObjA, rObjL);
 
-		aList.add(new Integer(6));
-		lList.add(new Integer(6));
+		//assertEquals(aList.toString(), lList.toString());
+		testListStringsMatch();
 
-		assertEquals(aList.toString(), lList.toString());
+		rObjA = aList.add(new Integer(6));
+		rObjL = lList.add(new Integer(6));
 
-		aList.add("Hello");
-		lList.add("Hello");
+		testReturnObjectsMatch(rObjA, rObjL);
 
-		assertEquals(aList.toString(), lList.toString());
+		//assertEquals(aList.toString(), lList.toString());
+		testListStringsMatch();
 
-		aList.add(new Integer(4));
-		lList.add(new Integer(4));
+		rObjA = aList.add("Hello");
+		rObjL = lList.add("Hello");
 
-		assertEquals(aList.toString(), lList.toString());
+		testReturnObjectsMatch(rObjA, rObjL);
 
-		aList.add("Four candles");
-		lList.add("Four candles");
+		//assertEquals(aList.toString(), lList.toString());
+		testListStringsMatch();
 
-		assertEquals(aList.toString(), lList.toString());
+		rObjA = aList.add(new Integer(4));
+		rObjL = lList.add(new Integer(4));
 
-		aList.remove(2);
-		lList.remove(2);
+		testReturnObjectsMatch(rObjA, rObjL);
 
+		//assertEquals(aList.toString(), lList.toString());
+		testListStringsMatch();
+
+		rObjA = aList.add("Four candles");
+		rObjL = lList.add("Four candles");
+
+		testReturnObjectsMatch(rObjA, rObjL);
+
+		//assertEquals(aList.toString(), lList.toString());
+		testListStringsMatch();
+
+		rObjA = aList.remove(2);
+		rObjL = lList.remove(2);
+
+		testReturnObjectsMatch(rObjA, rObjL);
+
+		//assertEquals(aList.toString(), lList.toString());
+		testListStringsMatch();
+	}
+	@Test
+	public void returnObjectsSameFromBothLists() {
+		ReturnObject rObjA = aList.get(0);
+		ReturnObject rObjL = lList.get(0);
+		//assertEquals(rObjA.hasError(), rObjL.hasError());
+		//assertEquals(rObjA.getError(), rObjL.getError());
+		//assertEquals(rObjA.getReturnValue(), rObjL.getReturnValue());
+		testReturnObjectsMatch(rObjA, rObjL);
+	}
+
+	public void testReturnObjectsMatch(ReturnObject rObjA, ReturnObject rObjL) {
+		assertEquals(rObjA.hasError(), rObjL.hasError());
+		assertEquals(rObjA.getError(), rObjL.getError());
+		assertEquals(rObjA.getReturnValue(), rObjL.getReturnValue());
+	}
+
+	public void testListStringsMatch() {
 		assertEquals(aList.toString(), lList.toString());
 	}
+/*
+	public void addToBothLists(Object someObject) {
+		aList.add(someObject);
+		lList.add(someObject);
+	}
+
+	public void removeFromBothLists(int someIndex) {
+
+	}
+*/
 }
