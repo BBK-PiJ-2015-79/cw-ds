@@ -45,7 +45,7 @@ public class LinkedList implements List {
 	public ReturnObject get(int index) {
 		ReturnObject getReturn;
 		LinkedListItem currentItem = null;
-		int currentIndex = 1;
+		int currentIndex = 0; // changed from 1 debug
 		if(this.isEmpty()) {
 			getReturn = new ReturnObjectImpl(null, ErrorMessage.EMPTY_STRUCTURE);
 		}
@@ -54,7 +54,7 @@ public class LinkedList implements List {
 		}
 		else {
 			currentItem = this.head;
-			while(currentIndex < index) {
+			while(currentIndex < (index)) { // changed from index debug
 				currentItem = currentItem.getNext();
 				currentIndex++;
 			}
@@ -88,13 +88,13 @@ public class LinkedList implements List {
 			}
 			else {
 				//work through and re-assign pointers
-				int currentIndex = 1;
+				int currentIndex = 0; // changed from 1 debug // changed from 1 debug
 				LinkedListItem currentItem = this.head;
-				while(currentIndex < (index - 1)) {
+				while(currentIndex < (index - 1)) { // changed from 1 debug
 					currentItem = currentItem.getNext();
 					currentIndex++;
 				}
-				currentItem.setNext(currentItem.getNext());
+				currentItem.setNext(currentItem.getNext().getNext()); // debug used to be just .getNext()
 			}
 		}
 		return remReturn;
@@ -121,24 +121,29 @@ public class LinkedList implements List {
 	public ReturnObject add(int index, Object item) {
 		ReturnObject addReturn;
 		if(item == null) {
+			//System.out.println("No good, null element"); // debug
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.INVALID_ARGUMENT);
 		}
 		else if(!this.validIndex(index, "add")) {
+			//System.out.println("No good, out of bounds"); // debug
 			addReturn = new ReturnObjectImpl(item, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}
 		else if(this.head == null) {
+			//System.out.println("First Element"); // debug
 			this.head = new LinkedListItem(item);
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
 		}
 		else {
+			//System.out.println("Adding to the list at index " + index); // debug
 			LinkedListItem newItem = new LinkedListItem(item);
 			LinkedListItem currentItem = this.head;
-			int currentIndex = 1;
-			while(currentIndex < (index - 1)) {
+			int currentIndex = 0; // changed from 1 debug //changed from 1
+			while(currentIndex < (index - 1)) { // changed from index, you get NPEs otherwise
 				currentItem = currentItem.getNext();
 				currentIndex++;
 			}
-			if(currentItem.hasNext()) {
+			//System.out.println("Current object is " + currentItem.toString()); //debug
+			if(currentItem.hasNext()) { // this was throwing a NPE
 				newItem.setNext(currentItem.getNext());
 			}
 			currentItem.setNext(newItem);
@@ -159,6 +164,7 @@ public class LinkedList implements List {
 	 *         the item added or containing an appropriate error message
 	 */
 	public ReturnObject add(Object item) {
+		//System.out.println("Adding at " + this.size()); //debug
 		return this.add(this.size(), item);
 	}
 
