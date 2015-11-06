@@ -16,6 +16,23 @@ public class List_UTest {
 		assertTrue(aList.isEmpty());
 	}
 
+	// Helper method, set up lists with 5 elements
+	public void resetInstanceLists() {
+		aList = new ArrayList();
+		lList = new LinkedList();
+
+		aList.add(new Integer(4));
+		lList.add(new Integer(4));
+		aList.add(new Integer(6));
+		lList.add(new Integer(6));
+		aList.add("Hello");
+		lList.add("Hello");
+		aList.add(new Integer(4));
+		lList.add(new Integer(4));
+		aList.add("Four candles");
+		lList.add("Four candles");		
+	}
+
 	@Test
 	public void testAddingRemovingArrayList() {
 		assertEquals(aList.size(), 0);
@@ -153,53 +170,96 @@ public class List_UTest {
 		ReturnObject rObjL;
 
 		// set up instance lists
-		aList.add(new Integer(4));
-		lList.add(new Integer(4));
-		aList.add(new Integer(6));
-		lList.add(new Integer(6));
-		aList.add("Hello");
-		lList.add("Hello");
-		aList.add(new Integer(4));
-		lList.add(new Integer(4));
-		aList.add("Four candles");
-		lList.add("Four candles");
+		resetInstanceLists();
 
 		rObjA = aList.get(-1);
 		rObjL = lList.get(-1);
 		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
-		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjL.getError());
 
 		rObjA = aList.get(8);
 		rObjL = lList.get(8);
 		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
-		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjL.getError());
 
 		rObjA = aList.get(0);
 		rObjL = lList.get(0);
 		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
-		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 
 		rObjA = aList.get(1);
 		rObjL = lList.get(1);
 
 		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
-		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 		rObjA = aList.get(2);
 		rObjL = lList.get(2);
 
 		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
-		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 		rObjA = aList.get(3);
 		rObjL = lList.get(3);
 
 		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
-		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 		rObjA = aList.get(4);
 		rObjL = lList.get(4);
 
 		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
-		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 
+	}
+
+	@Test
+	public void testRemoveAtAllIndices() {
+		ReturnObject rObjA;
+		ReturnObject rObjL;
+
+		resetInstanceLists();
+
+		rObjA = aList.remove(0);
+		rObjL = lList.remove(0);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+
+		resetInstanceLists();
+
+		rObjA = aList.remove(1);
+		rObjL = lList.remove(1);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+		
+		resetInstanceLists();
+
+		rObjA = aList.remove(2);
+		rObjL = lList.remove(2);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+		
+		resetInstanceLists();
+
+		rObjA = aList.remove(3);
+		rObjL = lList.remove(3);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+		
+		resetInstanceLists();
+
+		rObjA = aList.remove(4);
+		rObjL = lList.remove(4);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+		
 	}
 /*
 	public void addToBothLists(Object someObject) {

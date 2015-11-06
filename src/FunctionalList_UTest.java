@@ -2,135 +2,152 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class FunctionalList_UTest {
-	FunctionalList fAList; // array list object
-	FunctionalList fLList; // linked list object
+	FunctionalList aList; // array list object
+	FunctionalList lList; // linked list object
 
 	@Before
 	public void setup() {
-		this.fAList = new FunctionalArrayList();
-		this.fLList = new FunctionalLinkedList();
+		this.aList = new FunctionalArrayList();
+		this.lList = new FunctionalLinkedList();
 	}
 
 	@Test
 	public void testIsEmpty() {
-		assertTrue(fAList.isEmpty());
+		assertTrue(aList.isEmpty());
+	}
+
+	// Helper method, set up lists with 5 elements
+	public void resetInstanceLists() {
+		aList = new FunctionalArrayList();
+		lList = new FunctionalLinkedList();
+
+		aList.add(new Integer(4));
+		lList.add(new Integer(4));
+		aList.add(new Integer(6));
+		lList.add(new Integer(6));
+		aList.add("Hello");
+		lList.add("Hello");
+		aList.add(new Integer(4));
+		lList.add(new Integer(4));
+		aList.add("Four candles");
+		lList.add("Four candles");		
 	}
 
 	@Test
 	public void testAddingRemovingArrayList() {
-		assertEquals(fAList.size(), 0);
-		assertTrue(fAList.get(0).hasError());
-		fAList.remove(0);
-		assertEquals(fAList.size(), 0);
-		fAList.add(new Integer(0));
-		assertEquals(fAList.size(), 1);
-		assertFalse(fAList.get(0).hasError());
-		fAList.add(new Integer(0));
-		assertEquals(fAList.size(), 2);
-		fAList.add(new Integer(0));
-		assertEquals(fAList.size(), 3);
-		fAList.add(new Integer(0));
-		assertEquals(fAList.size(), 4);
-		fAList.add(new Integer(0));
-		assertEquals(fAList.size(), 5);
-		fAList.add(new Integer(0));
-		assertEquals(fAList.size(), 6);
-		//System.out.println("Before: " + fAList.toString());
-		//System.out.println("Size before: " + fAList.size());
-		ReturnObject rObj = fAList.remove(3);
+		assertEquals(aList.size(), 0);
+		assertTrue(aList.get(0).hasError());
+		aList.remove(0);
+		assertEquals(aList.size(), 0);
+		aList.add(new Integer(0));
+		assertEquals(aList.size(), 1);
+		assertFalse(aList.get(0).hasError());
+		aList.add(new Integer(0));
+		assertEquals(aList.size(), 2);
+		aList.add(new Integer(0));
+		assertEquals(aList.size(), 3);
+		aList.add(new Integer(0));
+		assertEquals(aList.size(), 4);
+		aList.add(new Integer(0));
+		assertEquals(aList.size(), 5);
+		aList.add(new Integer(0));
+		assertEquals(aList.size(), 6);
+		//System.out.println("Before: " + aList.toString());
+		//System.out.println("Size before: " + aList.size());
+		ReturnObject rObj = aList.remove(3);
 		//System.out.println(rObj.getError());
-		//System.out.println("After: " + fAList.toString());
-		//System.out.println("Size after: " + fAList.size());
-		assertEquals(fAList.size(), 5);
-		//System.out.println(fAList.toString());
+		//System.out.println("After: " + aList.toString());
+		//System.out.println("Size after: " + aList.size());
+		assertEquals(aList.size(), 5);
+		//System.out.println(aList.toString());
 	}
 	@Test
 	public void testAddingRemovingLinkedList() {
-		assertEquals(fLList.size(), 0);
-		assertTrue(fLList.get(0).hasError());
-		fLList.remove(0);
-		assertEquals(fLList.size(), 0);
-		fLList.add(new Integer(0));
-		assertEquals(fLList.size(), 1);
-		assertFalse(fLList.get(0).hasError());
-		fLList.add(new Integer(0));
-		assertEquals(fLList.size(), 2);
-		fLList.add(new Integer(0));
-		assertEquals(fLList.size(), 3);
-		fLList.add(new Integer(0));
-		assertEquals(fLList.size(), 4);
-		fLList.add(new Integer(0));
-		assertEquals(fLList.size(), 5);
-		fLList.add(new Integer(0));
-		assertEquals(fLList.size(), 6);
-		//System.out.println("Before: " + fLList.toString());
-		//System.out.println("Size before: " + fLList.size());
-		ReturnObject rObj = fLList.remove(3);
+		assertEquals(lList.size(), 0);
+		assertTrue(lList.get(0).hasError());
+		lList.remove(0);
+		assertEquals(lList.size(), 0);
+		lList.add(new Integer(0));
+		assertEquals(lList.size(), 1);
+		assertFalse(lList.get(0).hasError());
+		lList.add(new Integer(0));
+		assertEquals(lList.size(), 2);
+		lList.add(new Integer(0));
+		assertEquals(lList.size(), 3);
+		lList.add(new Integer(0));
+		assertEquals(lList.size(), 4);
+		lList.add(new Integer(0));
+		assertEquals(lList.size(), 5);
+		lList.add(new Integer(0));
+		assertEquals(lList.size(), 6);
+		//System.out.println("Before: " + lList.toString());
+		//System.out.println("Size before: " + lList.size());
+		ReturnObject rObj = lList.remove(3);
 		//System.out.println(rObj.getError());
-		//System.out.println("After: " + fLList.toString());
-		//System.out.println("Size after: " + fLList.size());
-		assertEquals(fLList.size(), 5);
-		//System.out.println(fLList.toString());
+		//System.out.println("After: " + lList.toString());
+		//System.out.println("Size after: " + lList.size());
+		assertEquals(lList.size(), 5);
+		//System.out.println(lList.toString());
 	}
 	@Test
 	public void testBothListsTheSameAfterAddingAndRemoving() {
-		//assertEquals(fAList.toString(), fLList.toString());
+		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 		ReturnObject rObjA;
 		ReturnObject rObjL;
 
-		rObjA = fAList.add(new Integer(4));
-		rObjL = fLList.add(new Integer(4));
+		rObjA = aList.add(new Integer(4));
+		rObjL = lList.add(new Integer(4));
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
-		//assertEquals(fAList.toString(), fLList.toString());
+		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 
-		rObjA = fAList.add(new Integer(6));
-		rObjL = fLList.add(new Integer(6));
+		rObjA = aList.add(new Integer(6));
+		rObjL = lList.add(new Integer(6));
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
-		//assertEquals(fAList.toString(), fLList.toString());
+		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 
-		rObjA = fAList.add("Hello");
-		rObjL = fLList.add("Hello");
+		rObjA = aList.add("Hello");
+		rObjL = lList.add("Hello");
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
-		//assertEquals(fAList.toString(), fLList.toString());
+		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 
-		rObjA = fAList.add(new Integer(4));
-		rObjL = fLList.add(new Integer(4));
+		rObjA = aList.add(new Integer(4));
+		rObjL = lList.add(new Integer(4));
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
-		//assertEquals(fAList.toString(), fLList.toString());
+		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 
-		rObjA = fAList.add("Four candles");
-		rObjL = fLList.add("Four candles");
+		rObjA = aList.add("Four candles");
+		rObjL = lList.add("Four candles");
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
-		//assertEquals(fAList.toString(), fLList.toString());
+		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 
-		rObjA = fAList.remove(2);
-		rObjL = fLList.remove(2);
+		rObjA = aList.remove(2);
+		rObjL = lList.remove(2);
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
-		//assertEquals(fAList.toString(), fLList.toString());
+		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 	}
 	@Test
 	public void returnObjectsSameFromBothLists() {
-		ReturnObject rObjA = fAList.get(0);
-		ReturnObject rObjL = fLList.get(0);
+		ReturnObject rObjA = aList.get(0);
+		ReturnObject rObjL = lList.get(0);
 		//assertEquals(rObjA.hasError(), rObjL.hasError());
 		//assertEquals(rObjA.getError(), rObjL.getError());
 		//assertEquals(rObjA.getReturnValue(), rObjL.getReturnValue());
@@ -144,16 +161,128 @@ public class FunctionalList_UTest {
 	}
 
 	public void testListStringsMatch() {
-		assertEquals(fAList.toString(), fLList.toString());
-	}
-/*
-	public void addToBothLists(Object someObject) {
-		fAList.add(someObject);
-		fLList.add(someObject);
+		assertEquals(aList.toString(), lList.toString());
 	}
 
-	public void removeFromBothLists(int someIndex) {
+	@Test
+	public void testInvalidIndexReturnsError() {
+		ReturnObject rObjA;
+		ReturnObject rObjL;
+
+		// set up instance lists
+		resetInstanceLists();
+
+		rObjA = aList.get(-1);
+		rObjL = lList.get(-1);
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjL.getError());
+
+		rObjA = aList.get(8);
+		rObjL = lList.get(8);
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjL.getError());
+
+		rObjA = aList.get(0);
+		rObjL = lList.get(0);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+
+		rObjA = aList.get(1);
+		rObjL = lList.get(1);
+
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		rObjA = aList.get(2);
+		rObjL = lList.get(2);
+
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		rObjA = aList.get(3);
+		rObjL = lList.get(3);
+
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		rObjA = aList.get(4);
+		rObjL = lList.get(4);
+
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 
 	}
-*/
+
+	@Test
+	public void testRemoveAtAllIndices() {
+		ReturnObject rObjA;
+		ReturnObject rObjL;
+
+		resetInstanceLists();
+
+		rObjA = aList.remove(0);
+		rObjL = lList.remove(0);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+
+		resetInstanceLists();
+
+		rObjA = aList.remove(1);
+		rObjL = lList.remove(1);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+		
+		resetInstanceLists();
+
+		rObjA = aList.remove(2);
+		rObjL = lList.remove(2);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+		
+		resetInstanceLists();
+
+		rObjA = aList.remove(3);
+		rObjL = lList.remove(3);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+		
+		resetInstanceLists();
+
+		rObjA = aList.remove(4);
+		rObjL = lList.remove(4);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
+		assertEquals(4, aList.size());
+		assertEquals(4, lList.size());
+		
+	}
+
+	@Test
+	public void testGetHeadEmptyList() {
+		ReturnObject rObjA;
+		ReturnObject rObjL;
+
+		rObjA = aList.head();
+		rObjL = lList.head();
+
+		assertEquals(ErrorMessage.EMPTY_STRUCTURE, rObjA.getError());
+		assertEquals(ErrorMessage.EMPTY_STRUCTURE, rObjL.getError());
+	}
+
+	@Test
+	public void testGetRestEmptyList() {
+		FunctionalList restA;
+		FunctionalList restL;
+
+		restA = aList.rest();
+		restL = lList.rest();
+
+		assertEquals(0, restA.size());
+		assertEquals(0, restL.size());
+	}
 }
