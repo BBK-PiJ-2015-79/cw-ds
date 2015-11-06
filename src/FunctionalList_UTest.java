@@ -285,4 +285,65 @@ public class FunctionalList_UTest {
 		assertEquals(0, restA.size());
 		assertEquals(0, restL.size());
 	}
+
+	@Test
+	public void getRestSingleEntry() {
+		FunctionalList restA;
+		FunctionalList restL;
+
+		aList.add("Hello");
+		lList.add("Hello");
+
+		//System.out.println(aList.toString());
+		//System.out.println(lList.toString());
+
+		restA = aList.rest();
+		restL = lList.rest();
+
+		//System.out.println(restA.toString());
+		//System.out.println(restL.toString());
+		assertFalse(aList.head().hasError());
+		assertFalse(lList.head().hasError());
+		assertEquals(0, restA.size());
+		assertEquals(0, restL.size());		
+	}
+
+	@Test
+	public void testHeadDoesNotChange() {
+		aList.add("One");
+		lList.add("One");
+
+		assertEquals("One", aList.head().getReturnValue());
+		assertEquals("One", lList.head().getReturnValue());
+
+		aList.add("Two");
+		aList.add("Two");
+
+		assertEquals("One", aList.head().getReturnValue());
+		assertEquals("One", lList.head().getReturnValue());
+
+		aList.add("Three");
+		aList.add("Three");
+
+		assertEquals("One", aList.head().getReturnValue());
+		assertEquals("One", lList.head().getReturnValue());
+
+		aList.add("Four");
+		aList.add("Four");
+
+		assertEquals("One", aList.head().getReturnValue());
+		assertEquals("One", lList.head().getReturnValue());
+
+		aList.add("Five");
+		aList.add("Five");
+
+		assertEquals("One", aList.head().getReturnValue());
+		assertEquals("One", lList.head().getReturnValue());
+
+		aList.add("Six");
+		aList.add("Six");
+
+		assertEquals("One", aList.head().getReturnValue());
+		assertEquals("One", lList.head().getReturnValue());
+	}
 }
