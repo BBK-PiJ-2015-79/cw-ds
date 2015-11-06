@@ -28,7 +28,7 @@ public class ReturnObjectImpl implements ReturnObject {
 
 	/**
 	 * Returns whether there has been an error
-	 * @return whether there has been an error
+	 * @return true if there has been an error, false otherwise
 	 */
 	public boolean hasError() {
 		if(this.error != ErrorMessage.NO_ERROR) {
@@ -73,7 +73,8 @@ public class ReturnObjectImpl implements ReturnObject {
 	 * returned is the same as if the toString() method were called
 	 * on the wrapped object directly.
 	 *
-	 * @return a String describing the wrapped object
+	 * @return a String describing the wrapped object, if the wrapped object is null
+	 *			then the string 'NULL' is returned
 	 */
 	public String toString() {
 		if(this.wrappedObj == null) {

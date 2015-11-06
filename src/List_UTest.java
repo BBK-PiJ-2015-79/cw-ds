@@ -146,6 +146,61 @@ public class List_UTest {
 	public void testListStringsMatch() {
 		assertEquals(aList.toString(), lList.toString());
 	}
+
+	@Test
+	public void testInvalidIndexReturnsError() {
+		ReturnObject rObjA;
+		ReturnObject rObjL;
+
+		// set up instance lists
+		aList.add(new Integer(4));
+		lList.add(new Integer(4));
+		aList.add(new Integer(6));
+		lList.add(new Integer(6));
+		aList.add("Hello");
+		lList.add("Hello");
+		aList.add(new Integer(4));
+		lList.add(new Integer(4));
+		aList.add("Four candles");
+		lList.add("Four candles");
+
+		rObjA = aList.get(-1);
+		rObjL = lList.get(-1);
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
+
+		rObjA = aList.get(8);
+		rObjL = lList.get(8);
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
+		assertEquals(ErrorMessage.INDEX_OUT_OF_BOUNDS, rObjA.getError());
+
+		rObjA = aList.get(0);
+		rObjL = lList.get(0);
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+
+		rObjA = aList.get(1);
+		rObjL = lList.get(1);
+
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		rObjA = aList.get(2);
+		rObjL = lList.get(2);
+
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		rObjA = aList.get(3);
+		rObjL = lList.get(3);
+
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		rObjA = aList.get(4);
+		rObjL = lList.get(4);
+
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+		assertEquals(ErrorMessage.NO_ERROR, rObjA.getError());
+
+	}
 /*
 	public void addToBothLists(Object someObject) {
 		aList.add(someObject);

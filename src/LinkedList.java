@@ -1,3 +1,10 @@
+/**
+ * An implementation of the List interface based on a singly Linked List. Written
+ * as part of coursework 2 for the 2015 Programming in Java module at Birkbeck.
+ *
+ * @author Chris Grocott
+ */
+
 public class LinkedList implements List {
 	private LinkedListItem head;
 
@@ -168,10 +175,9 @@ public class LinkedList implements List {
 		return this.add(this.size(), item);
 	}
 
-	/*
-	 * Helper methods
-	 */
-	//detect whether an index is out of bounds - however, this differs depending on whether you're looking up an index or adding!
+	
+	// Helper methods
+	// detect whether an index is out of bounds - this differs depending on whether you're looking up an index or adding
 	private boolean	validIndex(int index, String oper) {
 		int maxIndex = this.size();
 		if(oper.equals("add")) {
@@ -185,6 +191,11 @@ public class LinkedList implements List {
 		}
 	}
 	
+	/**
+	 * Get a string representation of the items currently in the list. If the list is
+	 * empty an empty string is returned.
+	 * @return a string representing the objects currently in the list
+	 */
 	public String toString() {
 		String returnString = "";
 		LinkedListItem currentItem = head;

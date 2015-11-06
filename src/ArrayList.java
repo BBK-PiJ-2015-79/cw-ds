@@ -127,7 +127,6 @@ public class ArrayList implements List {
 		}
 		// if the array is now full we need to increase storage
 		if(this.size() == this.objArray.length) {
-			//System.out.println("Need to grow array!"); //debug
 			this.growArray();
 		}
 		return addReturn;
@@ -149,10 +148,8 @@ public class ArrayList implements List {
 		return addReturn;
 	}
 	
-	/*
-	 * Helper methods
-	 */
-	//detect whether an index is out of bounds - however, this differs depending on whether you're looking up an index or adding!
+	// Helper methods
+	// detect whether an index is out of bounds - this differs depending on whether you're looking up an index or adding
 	private boolean	validIndex(int index, String oper) {
 		int maxIndex = this.size();
 		if(oper.equals("add")) {
@@ -168,44 +165,48 @@ public class ArrayList implements List {
 	
 	// remove any 'gaps' due to null pointers from the objArray field.
 	private void removeNulls() {
-		//TODO
 		int objArraySize = this.objArray.length;
-		//Object[] cleanArray = new Object[objArraySize];
 		for(int i = 0; i < objArraySize; i++) {
 			if((this.objArray[i] == null) && (i != (objArraySize - 1))) {
 				this.objArray[i] = this.objArray[(i + 1)];
 				this.objArray[(i + 1)] = null;
 			}
 		}
-		//return;
 	}
 	// resize the objArray.
 	private void growArray() {
-		//TODO
 		int objArraySize = this.objArray.length;
-		//System.out.println("Upsizing to " + Integer.toString(objArraySize * 2)); //debug
 		Object[] resizedArray = new Object[(objArraySize * 2)];
 		for(int i = 0; i < objArraySize; i++) {
 			resizedArray[i] = this.objArray[i];
 		}
 		this.objArray = resizedArray;
-		//return;
 	}
 	private void shrinkArray() {
-		//TODO
 		int objArraySize = this.objArray.length;
 		int newObjArraySize = objArraySize / 2;
-		//System.out.println("Downsizing to " + Integer.toString(newObjArraySize)); //debug
 		Object[] resizedArray = new Object[newObjArraySize];
 		for(int i = 0; i < newObjArraySize; i++) {
 			resizedArray[i] = this.objArray[i];
 		}
 		this.objArray = resizedArray;
-		//return;
+	}
+
+
+	// Helper method for adding a new item, makes a 'hole' in the present array
+	private void makeSpace(int index) {
+		int currentIndex = this.size();
+		while(currentIndex > index) {
+			this.objArray[currentIndex] = this.objArray[(currentIndex - 1)];
+			this.objArray[(currentIndex - 1)] = null;
+			currentIndex--;
+		}
 	}
 
 	/**
-	 * toString method, return the current data structure as a string;
+	 * Get a string representation of the items currently in the list. If the list is
+	 * empty an empty string is returned.
+	 * @return a string representing the objects currently in the list
 	 */
 	public String toString() {
 		String returnString = "";
@@ -216,30 +217,14 @@ public class ArrayList implements List {
 			currentReturnObj = this.get(i);
 			if(!currentReturnObj.hasError()) {
 				returnString = returnString + currentReturnObj.getReturnValue().toString() + ", ";
-				//returnString = returnString + "Found something at index " + Integer.toString(i) + ", ";
-				//currentObj = currentReturnObj.getReturnValue();
-				//System.out.println(currentObj.toString());
-				//System.out.println(this.objArray[i].toString());
 			}
 			else {
 				returnString = returnString + "Error at index " + Integer.toString(i) + ", ";
-				//System.out.println(currentReturnObj.getError());
 			}
 		}
 		if(returnString.length() > 0) {
 			returnString = returnString.substring(0, (returnString.length() - 2));
 		}
 		return returnString;
-	}
-
-	// make a whole for adding a new item.
-	public void makeSpace(int index) {
-		int currentIndex = this.size();
-		while(currentIndex > index) {
-			//make a hole
-			this.objArray[currentIndex] = this.objArray[(currentIndex - 1)];
-			this.objArray[(currentIndex - 1)] = null;
-			currentIndex--;
-		}
 	}
 }
