@@ -1,3 +1,12 @@
+/**
+ * A sampleable list can be sampled. 
+ * 
+ * Implementation based on ArrayList by Chris Grocott
+ *
+ * @author PiJ
+ * @author Chris Grocott
+ */
+
 public class SampleableListImpl extends ArrayList implements SampleableList {
 	/**
 	 * Returns a list containing the first, third, fifth...
