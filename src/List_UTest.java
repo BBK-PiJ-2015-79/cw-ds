@@ -223,6 +223,7 @@ public class List_UTest {
 		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 		assertEquals(4, aList.size());
 		assertEquals(4, lList.size());
+		assertEquals(aList.toString(), lList.toString());
 
 		resetInstanceLists();
 
@@ -232,6 +233,7 @@ public class List_UTest {
 		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 		assertEquals(4, aList.size());
 		assertEquals(4, lList.size());
+		assertEquals(aList.toString(), lList.toString());
 		
 		resetInstanceLists();
 
@@ -241,6 +243,7 @@ public class List_UTest {
 		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 		assertEquals(4, aList.size());
 		assertEquals(4, lList.size());
+		assertEquals(aList.toString(), lList.toString());
 		
 		resetInstanceLists();
 
@@ -250,6 +253,7 @@ public class List_UTest {
 		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 		assertEquals(4, aList.size());
 		assertEquals(4, lList.size());
+		assertEquals(aList.toString(), lList.toString());
 		
 		resetInstanceLists();
 
@@ -259,7 +263,7 @@ public class List_UTest {
 		assertEquals(ErrorMessage.NO_ERROR, rObjL.getError());
 		assertEquals(4, aList.size());
 		assertEquals(4, lList.size());
-		
+		assertEquals(aList.toString(), lList.toString());
 	}
 /*
 	public void addToBothLists(Object someObject) {

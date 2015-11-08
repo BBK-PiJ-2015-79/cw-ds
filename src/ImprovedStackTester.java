@@ -14,7 +14,9 @@ public class ImprovedStackTester {
 		testIStack.push("Bob");
 		testIStack.push("Charlie");
 		testIStack.push("Deborah");
+		testIStack.push("Charlie");
 		testIStack.push("Eddie");
+		testIStack.push("Charlie");
 		testIStack.push("Frederica");
 		testIStack.push(new Integer(8));
 		System.out.println(testIStack.toString());

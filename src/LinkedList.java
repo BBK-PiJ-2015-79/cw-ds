@@ -52,7 +52,7 @@ public class LinkedList implements List {
 	public ReturnObject get(int index) {
 		ReturnObject getReturn;
 		LinkedListItem currentItem = null;
-		int currentIndex = 0; // changed from 1 debug
+		int currentIndex = 0; 
 		if(this.isEmpty()) {
 			getReturn = new ReturnObjectImpl(null, ErrorMessage.EMPTY_STRUCTURE);
 		}
@@ -61,7 +61,7 @@ public class LinkedList implements List {
 		}
 		else {
 			currentItem = this.head;
-			while(currentIndex < (index)) { // changed from index debug
+			while(currentIndex < (index)) { 
 				currentItem = currentItem.getNext();
 				currentIndex++;
 			}
@@ -86,22 +86,21 @@ public class LinkedList implements List {
 		ReturnObject remReturn = this.get(index);
 		if(!remReturn.hasError()) {
 			//remove the returned object
-			//int currentIndex
 			if((index == 0) && (this.size() == 1)) {
 				this.head = null;
 			}
-			else if(index == 0) { // changed from 1 debug
+			else if(index == 0) { 
 				this.head = this.head.getNext();
 			}
 			else {
 				//work through and re-assign pointers
-				int currentIndex = 0; // changed from 1 debug // changed from 1 debug
+				int currentIndex = 0;
 				LinkedListItem currentItem = this.head;
-				while(currentIndex < (index - 1)) { // changed from 1 debug
+				while(currentIndex < (index - 1)) {
 					currentItem = currentItem.getNext();
 					currentIndex++;
 				}
-				currentItem.setNext(currentItem.getNext().getNext()); // debug used to be just .getNext()
+				currentItem.setNext(currentItem.getNext().getNext());
 			}
 		}
 		return remReturn;
@@ -127,38 +126,36 @@ public class LinkedList implements List {
 	 */
 	public ReturnObject add(int index, Object item) {
 		ReturnObject addReturn;
-
+		// if trying to add a null object, return an error
 		if(item == null) {
-			//System.out.println("No good, null element"); // debug
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.INVALID_ARGUMENT);
 		}
+		// if attempting to add at an invalid index, return an error
 		else if(!this.validIndex(index, "add")) {
-			//System.out.println("No good, out of bounds"); // debug
 			addReturn = new ReturnObjectImpl(item, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}
+		// if current list is empty, add the new item as the head
 		else if(this.head == null) {
-			//System.out.println("First Element"); // debug
 			this.head = new LinkedListItem(item);
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
 		}
-		// added to handle adding at index 0
+		// handle adding at index 0 (replacing the head)
 		else if((this.head != null) && (index == 0)) {
 			LinkedListItem newItem = new LinkedListItem(item);
 			newItem.setNext(this.head);
 			this.head = newItem;
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
 		}
+		// handle adding at any other index.
 		else {
-			//System.out.println("Adding to the list at index " + index); // debug
 			LinkedListItem newItem = new LinkedListItem(item);
 			LinkedListItem currentItem = this.head;
-			int currentIndex = 0; // changed from 1 debug //changed from 1
-			while(currentIndex < (index - 1)) { // changed from index, you get NPEs otherwise
+			int currentIndex = 0;
+			while(currentIndex < (index - 1)) {
 				currentItem = currentItem.getNext();
 				currentIndex++;
 			}
-			//System.out.println("Current object is " + currentItem.toString()); //debug
-			if(currentItem.hasNext()) { // this was throwing a NPE
+			if(currentItem.hasNext()) {
 				newItem.setNext(currentItem.getNext());
 			}
 			currentItem.setNext(newItem);
@@ -179,7 +176,6 @@ public class LinkedList implements List {
 	 *         the item added or containing an appropriate error message
 	 */
 	public ReturnObject add(Object item) {
-		//System.out.println("Adding at " + this.size()); //debug
 		return this.add(this.size(), item);
 	}
 

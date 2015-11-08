@@ -1,6 +1,28 @@
+/**
+ * An implementation of a stack with additional methods. 
+ * 
+ * Classes implementing this interface must use a {@see List} as the
+ * underlying data structure to store the elements on the stack. 
+ * 
+ * Not all operations on a stack will always be successful. For
+ * example, a programmer may try to pop an element from an empty
+ * stack. Since we hace not covered exceptions yet, we need another
+ * mechanism to report errors. In order to do that, methods of this
+ * list will return a {@see ReturnObject} that will contain either an
+ * object or an error value of the right kind (as defined in {@see
+ * ErrorMessage}).
+ *
+ * Implementation by Chris Grocott, original interface by PiJ team
+ * 
+ * @author PiJ
+ * @author Chris Grocott
+ */
 public class ImprovedStackImpl implements ImprovedStack {
 	private FunctionalList stackList;
 
+	/**
+	 * No argument constructor creates an empty stack
+	 */
 	public ImprovedStackImpl() {
 		this.stackList = new FunctionalArrayList();
 	}	
@@ -88,17 +110,18 @@ public class ImprovedStackImpl implements ImprovedStack {
 		int stackSize = this.size();
 		for(int i = 0; i < stackSize; i++) {
 			if(!this.stackList.get(i).getReturnValue().equals(object)) {
-				//System.out.println(object.toString() + " does not equal " + this.stackList.get(i).getReturnValue().toString()); // debug
 				newStackList.add(this.stackList.get(i));
-			}
-			else {
-				//System.out.println(object.toString() + " equals " + this.stackList.get(i).getReturnValue().toString()); // debug
 			}
 		}
 		this.stackList = newStackList;
 		return;
 	}
 
+	/**
+	 * Returns a string consisting of the elements of the stack separated by commas.
+	 * 
+	 * @return a string representation of the stack
+	 */
 	public String toString() {
 		return this.stackList.toString();
 	}
