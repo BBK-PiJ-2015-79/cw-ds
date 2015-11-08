@@ -21,6 +21,10 @@
 public class StackImpl extends AbstractStack {
 	public StackImpl(List list) {
 		super(list);
+		// if null is passed to the constructor, use an ArrayList.
+		if(this.internalList == null) {
+			this.internalList = new ArrayList();
+		}
 	}
 
 	/**

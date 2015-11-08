@@ -5,11 +5,13 @@ public class StackTest_UTest {
 	// unit test for stacks
 	Stack stAList;
 	Stack stLList;
+	Stack stNList;
 
 	@Before
 	public void setupStacks() {
 		stAList = new StackImpl(new ArrayList());
 		stLList = new StackImpl(new LinkedList());
+		stNList = new StackImpl(null);
 	}
 
 	@Test
@@ -35,5 +37,11 @@ public class StackTest_UTest {
 		assertEquals(stAList.toString(), stLList.toString());
 
 		assertEquals(stAList.pop().getReturnValue().toString(), stLList.pop().getReturnValue().toString());
+	}
+
+	@Test
+	public void testNullStack() {
+		stNList.push("This is going to throw a NPE isn't it...");
+		assertEquals(1, stNList.size());
 	}
 }
