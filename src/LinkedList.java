@@ -90,7 +90,7 @@ public class LinkedList implements List {
 			if((index == 0) && (this.size() == 1)) {
 				this.head = null;
 			}
-			else if(index == 1) {
+			else if(index == 0) { // changed from 1 debug
 				this.head = this.head.getNext();
 			}
 			else {
@@ -127,6 +127,7 @@ public class LinkedList implements List {
 	 */
 	public ReturnObject add(int index, Object item) {
 		ReturnObject addReturn;
+
 		if(item == null) {
 			//System.out.println("No good, null element"); // debug
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.INVALID_ARGUMENT);
@@ -138,6 +139,13 @@ public class LinkedList implements List {
 		else if(this.head == null) {
 			//System.out.println("First Element"); // debug
 			this.head = new LinkedListItem(item);
+			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
+		}
+		// added to handle adding at index 0
+		else if((this.head != null) && (index == 0)) {
+			LinkedListItem newItem = new LinkedListItem(item);
+			newItem.setNext(this.head);
+			this.head = newItem;
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
 		}
 		else {

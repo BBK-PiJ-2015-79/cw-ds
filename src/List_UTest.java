@@ -96,40 +96,40 @@ public class List_UTest {
 		ReturnObject rObjA;
 		ReturnObject rObjL;
 
-		rObjA = aList.add(new Integer(4));
-		rObjL = lList.add(new Integer(4));
+		rObjA = aList.add(0, new Integer(4));
+		rObjL = lList.add(0, new Integer(4));
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
 		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 
-		rObjA = aList.add(new Integer(6));
-		rObjL = lList.add(new Integer(6));
+		rObjA = aList.add(0, new Integer(6));
+		rObjL = lList.add(0, new Integer(6));
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
 		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 
-		rObjA = aList.add("Hello");
-		rObjL = lList.add("Hello");
+		rObjA = aList.add(0, "Hello");
+		rObjL = lList.add(0, "Hello");
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
 		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 
-		rObjA = aList.add(new Integer(4));
-		rObjL = lList.add(new Integer(4));
+		rObjA = aList.add(0, new Integer(4));
+		rObjL = lList.add(0, new Integer(4));
 
 		testReturnObjectsMatch(rObjA, rObjL);
 
 		//assertEquals(aList.toString(), lList.toString());
 		testListStringsMatch();
 
-		rObjA = aList.add("Four candles");
-		rObjL = lList.add("Four candles");
+		rObjA = aList.add(0, "Four candles");
+		rObjL = lList.add(0, "Four candles");
 
 		testReturnObjectsMatch(rObjA, rObjL);
 

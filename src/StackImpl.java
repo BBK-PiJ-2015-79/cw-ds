@@ -53,4 +53,8 @@ public class StackImpl extends AbstractStack {
 		this.internalList.remove(0);
 		return topItem;
 	}
+
+	public String toString() {
+		return this.internalList.toString();
+	}
 }
