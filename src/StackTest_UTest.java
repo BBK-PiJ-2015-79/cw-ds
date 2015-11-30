@@ -39,9 +39,9 @@ public class StackTest_UTest {
 		assertEquals(stAList.pop().getReturnValue().toString(), stLList.pop().getReturnValue().toString());
 	}
 
-	@Test
+	@Test(expected = NullPointerException.class)
 	public void testNullStack() {
 		stNList.push("This is going to throw a NPE isn't it...");
-		assertEquals(1, stNList.size());
+		//assertEquals(1, stNList.size());
 	}
 }
