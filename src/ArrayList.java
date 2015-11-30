@@ -6,10 +6,12 @@
  */
 public class ArrayList implements List {
 	private Object[] objArray;
+	private int size;
 	private static final int MIN_ARRAY_SIZE = 5;
 	
 	public ArrayList() {
 		this.objArray = new Object[5];
+		this.size = 0;
 	}
 
 	/**
@@ -32,17 +34,7 @@ public class ArrayList implements List {
 	 * @return the number of items currently in the list
 	 */
 	public int size() {
-		int objArraySize = this.objArray.length;
-		int listSize = 0;
-		for(int i=0; i < objArraySize; i++) {
-			if(objArray[i] == null) {
-				break; // safe assuming no 'gaps'
-			}
-			else {
-				listSize++;
-			}
-		}
-		return listSize;
+		return this.size;
 	}
 
 	/**
@@ -86,6 +78,7 @@ public class ArrayList implements List {
 		if(!remReturn.hasError()) {
 			this.objArray[index] = null;
 			this.removeNulls();
+			this.size--;
 		}
 		if((this.size() == ((this.objArray.length / 2) - 1)) && (this.objArray.length > this.MIN_ARRAY_SIZE)) {
 			this.shrinkArray();
@@ -124,6 +117,7 @@ public class ArrayList implements List {
 			this.makeSpace(index);
 			addReturn = new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
 			this.objArray[index] = item;
+			this.size++;
 		}
 		// if the array is now full we need to increase storage
 		if(this.size() == this.objArray.length) {
